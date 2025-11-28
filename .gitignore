@@ -6,5 +6,4 @@ vite.config.ts.*
 *.tar.gz
 .env
 *.json
-google-service-account.json
-.gitignore
+credentials.json
