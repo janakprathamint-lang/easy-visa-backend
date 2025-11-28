@@ -1,0 +1,48 @@
+{
+  "name": "easy-visa-backend",
+  "version": "1.0.0",
+"scripts": {
+  "dev": "tsx --env-file=.env server/index.ts",
+  "seed-admin": "tsx --env-file=.env server/scripts/seed-admin.ts",
+  "build": "tsc && tsc-alias",
+  "start": "node -r dotenv/config dist/server/index.js"
+},
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
+    "@react-pdf/renderer": "^4.3.1",
+    "bcrypt": "^6.0.0",
+    "connect-pg-simple": "^10.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "drizzle-orm": "^0.39.1",
+    "drizzle-zod": "^0.7.0",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "googleapis": "^166.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "memorystore": "^1.6.7",
+    "pg": "^8.16.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "ws": "^8.18.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^4.17.25",
+    "@types/express-session": "^1.18.0",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^20.19.25",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@types/ws": "^8.5.13",
+    "drizzle-kit": "^0.30.4",
+    "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.16",
+    "tsx": "^4.19.1",
+    "typescript": "^5.9.3"
+  }
+}
