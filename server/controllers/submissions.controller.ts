@@ -52,6 +52,9 @@ export async function createSubmission(req: AuthRequest, res: Response) {
   try {
     const validatedData = insertSubmissionSchema.parse(req.body);
     
+    // Normalize email to lowercase for consistent storage and duplicate checking
+    validatedData.email = validatedData.email.toLowerCase().trim();
+    
     const existingEmailSubmission = await storage.getSubmissionByEmail(validatedData.email);
     if (existingEmailSubmission) {
       return res.status(400).json({ error: "This email address has already been used for a submission" });
@@ -105,4 +108,5 @@ export async function updateSubmissionStatus(req: AuthRequest, res: Response) {
     res.status(500).json({ error: "Failed to update submission" });
   }
 }
+
 
