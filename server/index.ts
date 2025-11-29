@@ -11,8 +11,6 @@ const app = express();
 // CORS CONFIG
 // ---------------------
 const allowedOrigins: string[] = [
-  "http://localhost:5173",
-  "http://192.168.68.53:5173",
   "https://canada.easyvisa.ai"
 ];
 
