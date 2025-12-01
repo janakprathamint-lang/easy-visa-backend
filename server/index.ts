@@ -29,7 +29,6 @@ app.use(
   })
 );
 
-console.log(`✔ CORS enabled for: ${allowedOrigins}`);
 
 // Middleware
 app.use(express.json());
