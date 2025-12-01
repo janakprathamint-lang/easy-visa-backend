@@ -10,22 +10,22 @@ const app = express();
 // ---------------------
 // CORS CONFIG
 // ---------------------
-const allowedOrigins: string[] = [
-  "https://canada.easyvisa.ai"
-];
-
+const allowedOrigins: string[] = [];
+const client_url = process.env.CLIENT_URL
 if (process.env.CLIENT_URL) {
   allowedOrigins.push(process.env.CLIENT_URL);
 }
 
 // Always allow local dev
-allowedOrigins.push("http://localhost:5173");
-
+// allowedOrigins.push("http://localhost:5173");
+// console.log(client_url)
 
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: client_url,
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
