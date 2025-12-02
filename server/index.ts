@@ -10,19 +10,22 @@ const app = express();
 // ---------------------
 // CORS CONFIG
 // ---------------------
-const allowedOrigins: string[] = [];
+const allowedOrigins: string[] = [
+  "http://192.168.68.54:5173"
+];
 const client_url = process.env.CLIENT_URL
 if (process.env.CLIENT_URL) {
   allowedOrigins.push(process.env.CLIENT_URL);
 }
 
 // Always allow local dev
-// allowedOrigins.push("http://localhost:5173");
+allowedOrigins.push("http://localhost:5173");
+allowedOrigins.push("http://127.0.0.1:5173");
 // console.log(client_url)
 
 app.use(
   cors({
-    origin: client_url,
+    origin: allowedOrigins,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -60,6 +63,6 @@ app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
 // Start server
 const port = parseInt(process.env.PORT || "5000", 10);
 
-server.listen(port, () => {
+server.listen(port, "0.0.0.0",() => {
   console.log(`Backend running on port ${port}`);
 });

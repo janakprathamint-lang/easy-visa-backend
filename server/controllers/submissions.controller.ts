@@ -11,6 +11,7 @@ export async function getAllSubmissions(req: AuthRequest, res: Response) {
     const submissions = await storage.getSubmissions();
     res.json(submissions);
   } catch (error) {
+    console.error("Error fetching submissions:", error);
     res.status(500).json({ error: "Failed to fetch submissions" });
   }
 }
@@ -23,6 +24,7 @@ export async function getSubmissionById(req: AuthRequest, res: Response) {
     }
     res.json(submission);
   } catch (error) {
+    console.error("Error fetching submission by ID:", error);
     res.status(500).json({ error: "Failed to fetch submission" });
   }
 }
@@ -44,6 +46,7 @@ export async function getPublicSubmission(req: AuthRequest, res: Response) {
       eligibilityDetails: eligibilityResult,
     });
   } catch (error) {
+    console.error("Error fetching public submission:", error);
     res.status(500).json({ error: "Failed to fetch submission" });
   }
 }
@@ -105,8 +108,8 @@ export async function updateSubmissionStatus(req: AuthRequest, res: Response) {
     }
     res.json(submission);
   } catch (error) {
+    console.error("Error updating submission status:", error);
     res.status(500).json({ error: "Failed to update submission" });
   }
 }
-
 

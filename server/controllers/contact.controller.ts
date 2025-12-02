@@ -3,17 +3,19 @@ import { storage } from "../utilities/storage";
 import { insertContactMessageSchema } from "@shared/schema";
 import { z } from "zod";
 import { sendContactMessageToGoogleSheets } from "./../utilities/googleSheets";
+import type { AuthRequest } from "../middleware/auth.middleware";
 
-export async function getAllContactMessages(req: any, res: any) {
+export async function getAllContactMessages(req: AuthRequest, res: Response) {
   try {
     const messages = await storage.getContactMessages();
     res.json(messages);
   } catch (error) {
+    console.error("Error fetching contact messages:", error);
     res.status(500).json({ error: "Failed to fetch contact messages" });
   }
 }
 
-export async function createContactMessage(req: any, res: any) {
+export async function createContactMessage(req: AuthRequest, res: Response) {
   try {
     const validatedData = insertContactMessageSchema.parse(req.body);
     const message = await storage.createContactMessage(validatedData);
