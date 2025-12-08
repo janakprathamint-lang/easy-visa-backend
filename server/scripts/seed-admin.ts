@@ -3,8 +3,8 @@ import { db } from "../utilities/db";
 import { users } from "@shared/schema";
 import { eq } from "drizzle-orm";
 
-const ADMIN_USERNAME = process.env.ADMIN_USERNAME || "admin";
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin123";
+const ADMIN_USERNAME = process.env.ADMIN_USERNAME || "internal_admin@pi.com";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "pi@Admin123#";
 
 async function seedAdminUser() {
   try {

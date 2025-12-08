@@ -12,7 +12,7 @@ const app = express();
 // ---------------------
 const allowedOrigins: string[] = [
   // "http://192.168.68.75:5173"
-  "https://demo-canada.easyvisa.ai"
+  "https://canada.easyvisa.ai"
   
 ];
 const client_url = process.env.CLIENT_URL
