@@ -1,9 +1,245 @@
 {
-  "id": "6f76b032-e240-4693-bce4-512049d83f20",
+  "id": "60aa6e6d-57a2-4dd3-9cd7-bcaa5c1c07ad",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
+    "public.contact_messages": {
+      "name": "contact_messages",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "varchar",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "phone": {
+          "name": "phone",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "subject": {
+          "name": "subject",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "message": {
+          "name": "message",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "submitted_at": {
+          "name": "submitted_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.refresh_tokens": {
+      "name": "refresh_tokens",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "varchar",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "token": {
+          "name": "token",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "expires_at": {
+          "name": "expires_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "refresh_tokens_user_id_users_id_fk": {
+          "name": "refresh_tokens_user_id_users_id_fk",
+          "tableFrom": "refresh_tokens",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "refresh_tokens_token_unique": {
+          "name": "refresh_tokens_token_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "token"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.spouse_submissions": {
+      "name": "spouse_submissions",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "varchar",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "full_name": {
+          "name": "full_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "phone": {
+          "name": "phone",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "city": {
+          "name": "city",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "spouse_name": {
+          "name": "spouse_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "permit_type": {
+          "name": "permit_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "duration_information": {
+          "name": "duration_information",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "noc_level": {
+          "name": "noc_level",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "canada_funds": {
+          "name": "canada_funds",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "india_funds": {
+          "name": "india_funds",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "credits": {
+          "name": "credits",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "marriage_duration": {
+          "name": "marriage_duration",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "eligibility_score": {
+          "name": "eligibility_score",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'pending'"
+        },
+        "submitted_at": {
+          "name": "submitted_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
     "public.submissions": {
       "name": "submissions",
       "schema": "",
@@ -39,18 +275,113 @@
           "primaryKey": false,
           "notNull": true
         },
-        "otp_code": {
-          "name": "otp_code",
+        "education": {
+          "name": "education",
           "type": "text",
           "primaryKey": false,
           "notNull": false
         },
-        "otp_verified": {
-          "name": "otp_verified",
-          "type": "integer",
+        "education_grade": {
+          "name": "education_grade",
+          "type": "text",
           "primaryKey": false,
-          "notNull": false,
-          "default": 0
+          "notNull": false
+        },
+        "grade_type": {
+          "name": "grade_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "has_language_test": {
+          "name": "has_language_test",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "language_test": {
+          "name": "language_test",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ielts_score": {
+          "name": "ielts_score",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "course_relevance": {
+          "name": "course_relevance",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "course_type": {
+          "name": "course_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "institution_type": {
+          "name": "institution_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "gap_years": {
+          "name": "gap_years",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "proof_of_funds": {
+          "name": "proof_of_funds",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "strong_sop": {
+          "name": "strong_sop",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "public_university_loa": {
+          "name": "public_university_loa",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "has_work_experience": {
+          "name": "has_work_experience",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "work_experience_years": {
+          "name": "work_experience_years",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "financial_capacity": {
+          "name": "financial_capacity",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "preferred_intake": {
+          "name": "preferred_intake",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "preferred_province": {
+          "name": "preferred_province",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
         },
         "eligibility_score": {
           "name": "eligibility_score",
@@ -103,6 +434,13 @@
           "type": "text",
           "primaryKey": false,
           "notNull": true
+        },
+        "role": {
+          "name": "role",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'user'"
         }
       },
       "indexes": {},

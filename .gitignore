@@ -5,4 +5,5 @@ server/public
 vite.config.ts.*
 *.tar.gz
 .env
-.seed-admin.ts
+scripts/*.seed-admin.ts
+*.zip

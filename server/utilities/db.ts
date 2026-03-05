@@ -25,8 +25,10 @@ if (!dbUrl.startsWith("postgres://") && !dbUrl.startsWith("postgresql://")) {
 console.log("🔍 DATABASE_URL found. Attempting to connect...");
 
 // 4. Create PostgreSQL connection pool
+// Use sslmode=disable for local Postgres that don't support SSL. Set DATABASE_SSL_MODE=require (or no-verify) for cloud DBs that require SSL.
+const sslMode = process.env.DATABASE_SSL_MODE ?? "disable";
 const pool = new Pool({
-  connectionString: dbUrl + "?sslmode=no-verify",
+  connectionString: dbUrl + (dbUrl.includes("?") ? "&" : "?") + `sslmode=${sslMode}`,
 });
 
 // 5. Test the DB connection immediately
